@@ -1,0 +1,30 @@
+diff --git a/client3.py b/client3.py
+index ca310d8..771bad8 100644
+--- a/client3.py
++++ b/client3.py
+@@ -39,11 +39,12 @@ def getDataPoint(quote):
+     return stock, bid_price, ask_price, price
+ 
+ 
++
+ def getRatio(price_a, price_b):
+     """ Get ratio of price_a and price_b """
+     """ ------------- Update this function ------------- """
+     if price_b == 0:
+-        return
++        return None
+     else:
+         return price_a / price_b
+ 
+@@ -60,5 +61,8 @@ if __name__ == "__main__":
+             stock, bid_price, ask_price, price = getDataPoint(quote)
+             prices[stock] = price
+             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
+-
+-        print("Ratio %s" % getRatio(prices["ABC"], prices["DEF"]))
++        if "ABC" in prices and "DEF" in prices:
++            ratio = getRatio(prices["ABC"], prices["DEF"])
++            print("Ratio %s" % ratio)
++        else:
++            print("Unable to calculate ratio. Missing data for ABC or DEF.")
+\ No newline at end of file
